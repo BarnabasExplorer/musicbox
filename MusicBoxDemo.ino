@@ -1,6 +1,11 @@
 /** MUSIC BOX SAMPLE **/
 
-#define B0  31
+// Below are macro definitions to make playing notes easier in your program
+// this can be copy and pasted into student's files
+// the definitions include octaves for 1-7
+// Instead of typing in frequencies in their code, they can just use the macro definition, for example:
+// tone(6,C1) is the same as tone(6,33);
+
 #define C1  33
 #define CS1 35
 #define D1  37
@@ -13,6 +18,7 @@
 #define A1  55
 #define AS1 58
 #define B1  62
+
 #define C2  65
 #define CS2 69
 #define D2  73
@@ -25,6 +31,7 @@
 #define A2  110
 #define AS2 117
 #define B2  123
+
 #define C3  131
 #define CS3 139
 #define D3  147
@@ -37,6 +44,7 @@
 #define A3  220
 #define AS3 233
 #define B3  247
+
 #define C4  262
 #define CS4 277
 #define D4  294
@@ -49,6 +57,7 @@
 #define A4  440
 #define AS4 466
 #define B4  494
+
 #define C5  523
 #define CS5 554
 #define D5  587
@@ -61,6 +70,7 @@
 #define A5  880
 #define AS5 932
 #define B5  988
+
 #define C6  1047
 #define CS6 1109
 #define D6  1175
@@ -73,6 +83,7 @@
 #define A6  1760
 #define AS6 1865
 #define B6  1976
+
 #define C7  2093
 #define CS7 2217
 #define D7  2349
@@ -85,29 +96,28 @@
 #define A7  3520
 #define AS7 3729
 #define B7  3951
-#define C8  4186
-#define CS8 4435
-#define D8  4699
-#define DS8 4978
+
 
 void setup() {
+ 
+ // PIN 12 - SWITCH
+ // PIN 6 - BUZZER
+ // PIN 3 - 9G DC BLUE GEAR MOTOR
+  
   pinMode(12,INPUT_PULLUP);
   pinMode(6,OUTPUT);
   pinMode(3,OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
   
-
-  // if the button is not pressed, then play music
+  // if the box is open then...
   if (digitalRead(12)==HIGH) {
 
+    // turn on the DC motor
     digitalWrite(3,HIGH);    
 
     // hot cross buns
-
     tone(6,B4);
     delay(500);
     noTone(6);
@@ -124,7 +134,12 @@ void loop() {
     delay(500);
   }
   else {
+    // if the box is closed then...
+    
+    // turn off the buzzer
     noTone(6);
+    
+    // turn off the DC motor
     digitalWrite(3,LOW);
   }
 
